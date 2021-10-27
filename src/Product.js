@@ -1,7 +1,13 @@
 import React from 'react'
 import "./Product.css"
+import {useDispatch} from 'react-redux'
+import {addToCheckout} from './redux/basketSlice'
 
 function Product({ title, image, price, rating }) {
+    const dispatch = useDispatch()
+    const addToBasket = ()=>{
+        dispatch(addToCheckout({title, image, price, rating}))
+    }
     return (
         <div className = "product">
             <div className = "product__info">
@@ -15,7 +21,7 @@ function Product({ title, image, price, rating }) {
                 </div>
             </div>
             <img src = {image} alt ="" />
-            <button>Add to Basket</button>
+            <button onClick = {addToBasket}>Add to Basket</button>
         </div>
     )
 }
